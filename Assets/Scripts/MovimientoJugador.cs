@@ -23,11 +23,9 @@ public class MovimientoJugador : MonoBehaviour
 
     void Update()
     {
-        // MOVIMIENTO INPUT
         movX = Input.GetAxisRaw("Horizontal");
         movZ = Input.GetAxisRaw("Vertical");
-
-        // MOUSE
+      
         float mouseX = Input.GetAxis("Mouse X") * sensibilidadMouse * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensibilidadMouse * Time.deltaTime;
 
@@ -36,8 +34,7 @@ public class MovimientoJugador : MonoBehaviour
 
         camara.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
-
-        // SALTO
+   
         bool enSuelo = Physics.Raycast(transform.position, Vector3.down, distanciaSuelo);
 
         if (Input.GetKeyDown(KeyCode.Space) && enSuelo)
