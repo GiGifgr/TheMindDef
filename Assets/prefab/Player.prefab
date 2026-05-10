@@ -125,7 +125,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109780498740840614}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 70
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -143,7 +143,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4346156320511789238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,11 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82eba65450f18845827525e33768874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugador
-  velocidad: 5
-  fuerzaSalto: 5
-  distanciaSuelo: 1.1
-  sensibilidadMouse: 300
-  camara: {fileID: 400643325721599940}
+  speed: 5
+  jumpForce: 5
+  groundDistance: 1.2
+  mouseSensitivity: 100
+  playerCamera: {fileID: 400643325721599940}
 --- !u!1 &2865917465862846170
 GameObject:
   m_ObjectHideFlags: 0
