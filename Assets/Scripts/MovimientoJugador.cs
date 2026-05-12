@@ -2,54 +2,83 @@ using UnityEngine;
 
 public class MovimientoJugador : MonoBehaviour
 {
-    public float velocidad = 5f;
-    public float fuerzaSalto = 5f;
-    public float distanciaSuelo = 1.2f;
+    [Header("Movement configuration")]
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float groundDistance = 1.2f;
 
-    public float sensibilidadMouse = 100f;
-    public Transform camara;
+    [Header("Camera configuration")]
+    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private Transform playerCamera;
 
     private Rigidbody rb;
-    private float movX;
-    private float movZ;
+    private float moveX;
+    private float moveZ;
+    private float rotationX = 0f;
 
-    float rotacionX = 0f;
+    private void Start()
+    {
+        InitializeComponent();
+    }
 
-    void Start()
+    private void Update()
+    {
+        HandleInput();
+        HandleCamera();
+        HandleJump();
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void InitializeComponent()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void HandleInput()
     {
-        // MOVIMIENTO INPUT
-        movX = Input.GetAxisRaw("Horizontal");
-        movZ = Input.GetAxisRaw("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
+    }
 
-        // MOUSE
-        float mouseX = Input.GetAxis("Mouse X") * sensibilidadMouse * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensibilidadMouse * Time.deltaTime;
+    private void HandleCamera()
+    {
+        if (playerCamera == null) return;
 
-        rotacionX -= mouseY;
-        rotacionX = Mathf.Clamp(rotacionX, -90f, 90f);
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        camara.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
+        rotationX -= mouseY;
+        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+
+        playerCamera.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
 
-        // SALTO
-        bool enSuelo = Physics.Raycast(transform.position, Vector3.down, distanciaSuelo);
-
-        if (Input.GetKeyDown(KeyCode.Space) && enSuelo)
+    private void HandleJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-            rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
-    void FixedUpdate()
+    private bool IsGrounded()
     {
-        Vector3 movimiento = transform.forward * movZ + transform.right * movX;
-        rb.MovePosition(rb.position + movimiento * velocidad * Time.fixedDeltaTime);
+        return Physics.Raycast(transform.position, Vector3.down, groundDistance);
+    }
+
+    private void MovePlayer()
+    {
+        Vector3 movement = transform.forward * moveZ + transform.right * moveX;
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }

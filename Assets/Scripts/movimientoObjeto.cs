@@ -4,8 +4,8 @@ public class movimientoObjeto : MonoBehaviour
 {
     public Camera camaraJugador;
 
-    public float rangoX = 5f; // izquierda-derecha
-    public float rangoZ = 5f; // adelante-atrás
+    public float rangoX = 5f; 
+    public float rangoZ = 5f; 
 
     private Vector3 posicionInicial;
 
@@ -21,14 +21,12 @@ public class movimientoObjeto : MonoBehaviour
     void Update()
     {
         seVeAhorita = EstaEnPantalla();
-
-        // Detecta cuando deja de verse
+        
         if (seVioAntes && !seVeAhorita)
         {
             dejoDeVerse = true;
         }
-
-        // Cuando vuelve a verse después de desaparecer
+        
         if (!seVioAntes && seVeAhorita && dejoDeVerse)
         {
             CambiarDeLugar();
