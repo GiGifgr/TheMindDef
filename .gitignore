@@ -4,3 +4,6 @@ Logs/
 Obj/
 Build/
 UserSettings/
+.vs/
+*.zip
+*.zip.meta

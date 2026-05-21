@@ -32,5 +32,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HBT8.unity
     guid: 9b22f9a5b1f45af42ba62cfead83db45
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 579b3ed17d261c44fbb903e515c0f095
+  - enabled: 1
+    path: Assets/Scenes/Menu Inicio.unity
+    guid: e70a54c96aeb78c47af3532cfe828b03
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

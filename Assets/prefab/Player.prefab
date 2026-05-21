@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6420622805162467254}
   - component: {fileID: 9190650996824828801}
   - component: {fileID: 4346156320511789238}
+  - component: {fileID: 2472313050014454344}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -161,6 +162,23 @@ MonoBehaviour:
   groundDistance: 1.2
   mouseSensitivity: 100
   playerCamera: {fileID: 400643325721599940}
+--- !u!114 &2472313050014454344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109780498740840614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cf84f0fc6c86048be0d45a8c2bd15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthController
+  _maxLives: 3
+  _heartImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2865917465862846170
 GameObject:
   m_ObjectHideFlags: 0
