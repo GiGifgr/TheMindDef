@@ -4,6 +4,7 @@ public class MovimientoJugador : MonoBehaviour
 {
     [Header("Movement configuration")]
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float sprintSpeed = 8f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float groundDistance = 1.2f;
 
@@ -79,6 +80,14 @@ public class MovimientoJugador : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 movement = transform.forward * moveZ + transform.right * moveX;
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
+        float currentSpeed = speed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
+
+        rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
     }
 }

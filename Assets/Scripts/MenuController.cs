@@ -9,9 +9,16 @@ public class MenuController : MonoBehaviour
     [SerializeField] private string _creditsSceneName = "Creditos";
     [SerializeField] private string _menuSceneName = "Menu Inicio";
 
-   
+
     public void PlayGame()
     {
+        GameObject musicaMenu = GameObject.Find("MusicManager");
+
+        if (musicaMenu != null)
+        {
+            Destroy(musicaMenu);
+        }
+
         SceneManager.LoadScene(_gameSceneName);
     }
 

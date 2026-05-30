@@ -90,6 +90,9 @@ public class EnemyController : MonoBehaviour
             if (Time.time - _lastDamageTime >= _damageCooldown)
             {
                 playerHealth.TakeDamage(_damageAmount);
+
+                FindFirstObjectByType<EnemyScreenEffect>().ShowHitEffect();
+
                 _lastDamageTime = Time.time;
 
                 Debug.Log("El enemigo hizo daño al jugador.");
